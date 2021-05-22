@@ -121,10 +121,15 @@ class MealDetailScreen extends StatelessWidget {
                     ListView.builder(
                       itemCount: meal.steps.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return stepListCard(
-                          context,
-                          meal.steps[index],
-                          index,
+                        return Column(
+                          children: [
+                            stepListCard(
+                              context,
+                              meal.steps[index],
+                              index,
+                            ),
+                            Divider(thickness: 5,),
+                          ],
                         );
                       },
                     ),
