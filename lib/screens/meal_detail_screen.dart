@@ -128,7 +128,9 @@ class MealDetailScreen extends StatelessWidget {
                               meal.steps[index],
                               index,
                             ),
-                            Divider(thickness: 5,),
+                            Divider(
+                              thickness: 5,
+                            ),
                           ],
                         );
                       },
@@ -139,6 +141,12 @@ class MealDetailScreen extends StatelessWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.remove),
+        onPressed: () {
+          Navigator.of(context).pop(meal);
+        },
       ),
     );
   }
