@@ -5,6 +5,11 @@ import 'package:meals_app/models/meal.dart';
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-details';
 
+  final Function toggleFavorite;
+  final List<Meal> favoriteMeals;
+
+  MealDetailScreen(this.toggleFavorite, this.favoriteMeals);
+
   Widget buildSectionTitle(BuildContext context, String title) {
     return Container(
       padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -51,6 +56,8 @@ class MealDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool favoriteToggled=false;
+
     final meal = ModalRoute.of(context)!.settings.arguments as Meal;
 
     return Scaffold(
@@ -143,9 +150,9 @@ class MealDetailScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.remove),
+        child: favoriteMeals.contains(meal)? Icon(Icons.favorite, color: Colors.red,):   Icon(Icons.favorite_border),
         onPressed: () {
-          Navigator.of(context).pop(meal);
+          toggleFavorite(meal);
         },
       ),
     );

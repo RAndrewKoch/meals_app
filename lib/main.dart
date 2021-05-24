@@ -29,11 +29,15 @@ class _MyAppState extends State<MyApp> {
   List<Meal> availableMeals = DUMMY_MEALS;
   List<Meal> favoriteMeals = [];
 
-  void toggleMeal(Meal meal){
+  void toggleFavorite(Meal meal){
     if (favoriteMeals.contains(meal)){
-      favoriteMeals.remove(meal);
+      setState(() {
+        favoriteMeals.remove(meal);
+      });
     } else{
-      favoriteMeals.add(meal);
+      setState(() {
+        favoriteMeals.add(meal);
+      });
     }
   }
 
@@ -86,7 +90,7 @@ class _MyAppState extends State<MyApp> {
       routes: {
         "/" : (context) => TabsScreen(favoriteMeals),
         CategoryMealsScreen.routeName : (context) => CategoryMealsScreen(availableMeals),
-        MealDetailScreen.routeName : (context) => MealDetailScreen(),
+        MealDetailScreen.routeName : (context) => MealDetailScreen(toggleFavorite, favoriteMeals),
         FiltersScreen.routeName :(context)=> FiltersScreen(setFilters, filterMap),
       },
       onGenerateRoute: (settings) {

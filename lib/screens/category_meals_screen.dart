@@ -40,12 +40,6 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
     super.didChangeDependencies();
   }
 
-  void removeItem(Meal meal) {
-    setState(() {
-      categoryMeals.remove(meal);
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +50,6 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
         itemBuilder: (context, index) {
           return MealItem(
             meal: categoryMeals[index],
-            removeItem: removeItem,
           );
         },
         itemCount: categoryMeals.length,
